@@ -1,13 +1,12 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Along Clock</title>
-   
- 
+    <title>Analog Clock</title>
 
-    <style  type="text/css">
-        
+    <style>
+
 *{
     padding: 0;
     margin: 0;
@@ -76,62 +75,60 @@ position: relative;
     border-radius: 8px;
 }
     </style>
-    
+
 </head>
 <body>
     <div class="container">
-        
         <div class="clock">
+            <!-- Hour, Minute, and Second Hands -->
+            <div id="hour" style="--clr: #ff3d58; --h: 80px;" class="hand"><i></i></div>
+            <div id="min" style="--clr:#00a6ff; --h: 90px;" class="hand"><i></i></div>
+            <div id="sec" style="--clr: #ffffff; --h: 110px;" class="hand"><i></i></div>
 
-         <!-- Hour, minute, and second hands -->
-        <div id="hour" style="--clr: #ff3d58;" class="hand"><i></i></div>
-        <div id="min" style="--clr:#00a6ff;" class="hand"><i></i></div>
-        <div id="sec" style="--clr: #ffffff;" class="hand" ><i></i></div>
- 
-
-        <span style="--i:1;"><b>1</b></span>
-        <span style="--i:2;" ><b>2</b></span>
-        <span style="--i:3;"><b>3</b></span>
-        <span style="--i:4;"><b>4</b></span>
-        <span style="--i:5;"><b>5</b></span>
-        <span style="--i:6;"><b>6</b></span>
-        <span style="--i:7;"><b>7</b></span>
-        <span style="--i:8;"><b>8</b></span>
-        <span style="--i:9;"><b>9</b></span>
-        <span style="--i:10;"><b>10</b></span>
-        <span style="--i:11;"><b>11</b></span>
-        <span style="--i:12;"><b>12</b></span>
-        
-    </div>
+            <!-- Clock Numbers -->
+            <span style="--i:1;"><b>1</b></span>
+            <span style="--i:2;"><b>2</b></span>
+            <span style="--i:3;"><b>3</b></span>
+            <span style="--i:4;"><b>4</b></span>
+            <span style="--i:5;"><b>5</b></span>
+            <span style="--i:6;"><b>6</b></span>
+            <span style="--i:7;"><b>7</b></span>
+            <span style="--i:8;"><b>8</b></span>
+            <span style="--i:9;"><b>9</b></span>
+            <span style="--i:10;"><b>10</b></span>
+            <span style="--i:11;"><b>11</b></span>
+            <span style="--i:12;"><b>12</b></span>
+        </div>
     </div>
 
-<script>
-    
-let hr = document.getElementById('hour');
-let min = document.getElementById('min');
-let sec = document.getElementById('sec');
+    <script>
+        let hr = document.getElementById('hour');
+        let min = document.getElementById('min');
+        let sec = document.getElementById('sec');
 
-function displayTime() {
-    let date = new Date();
+        function displayTime() {
+            let date = new Date();
 
-    // Getting hour, minutes, seconds from date
-    let hh = date.getHours();
-    let mm = date.getMinutes();
-    let ss = date.getSeconds();
+            // Get hours, minutes, and seconds
+            let hh = date.getHours() % 12; // Convert to 12-hour format
+            let mm = date.getMinutes();
+            let ss = date.getSeconds();
 
-    // Calculating rotations
-    let hRotation = 30 * hh + mm / 2; // 360° / 12 hours
-    let mRotation = 6 * mm;           // 360° / 60 minutes
-    let sRotation = 6 * ss;           // 360° / 60 seconds
+            // Calculate rotations
+            let hRotation = 30 * hh + mm / 2; 
+            let mRotation = 6 * mm;           
+            let sRotation = 6 * ss;           
 
-    // Apply rotations
-    hr.style.transform = `rotate(${hRotation}deg)`;
-    min.style.transform = `rotate(${mRotation}deg)`;
-    sec.style.transform = `rotate(${sRotation}deg)`;
-}
+            // Apply rotations
+            hr.style.transform = `rotate(${hRotation}deg)`;
+            min.style.transform = `rotate(${mRotation}deg)`;
+            sec.style.transform = `rotate(${sRotation}deg)`;
+        }
 
-setInterval(displayTime, 1000);
-</script>
- 
+        // Update time every second
+        setInterval(displayTime, 1000);
+        displayTime(); // Initial call to set the correct time immediately
+    </script>
+
 </body>
 </html>
