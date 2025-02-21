@@ -5,76 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analog Clock</title>
 
-    <style>
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    color: #ffffff;
-}
-
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #212121;
-
-}
-.container{
-position: relative;
-}
-
-.clock{
-
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background-color: rgb(255, 255, 255, 0.1) ;
-    border: 2px solid rgb(255, 255, 255, 0.25) ;
-    box-shadow: 0px 0px 30px rgb(0.10, 0.2, 0.1, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.clock span{
-    position: absolute;
-    transform: rotate(calc(30deg * var(--i)));
-    inset: 12px;
-    text-align: center;
-}
-.clock span b{
-
-    transform: rotate(calc(-30deg * var(--i)));
-    display: inline-block;
-    font-size: 20px;
-}
-
-.clock::before{
-    content: "";
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #fff;
-}
-.hand{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-.hand i{
-    position: absolute;
-    background-color: var(--clr);
-    width: 4px;
-    height: var(--h);
-    border-radius: 8px;
-}
-    </style>
+  <link rel="stylesheet" href="stylesheet.css">
 
 </head>
 <body>
@@ -101,34 +32,7 @@ position: relative;
         </div>
     </div>
 
-    <script>
-        let hr = document.getElementById('hour');
-        let min = document.getElementById('min');
-        let sec = document.getElementById('sec');
-
-        function displayTime() {
-            let date = new Date();
-
-            // Get hours, minutes, and seconds
-            let hh = date.getHours() % 12; // Convert to 12-hour format
-            let mm = date.getMinutes();
-            let ss = date.getSeconds();
-
-            // Calculate rotations
-            let hRotation = 30 * hh + mm / 2; 
-            let mRotation = 6 * mm;           
-            let sRotation = 6 * ss;           
-
-            // Apply rotations
-            hr.style.transform = `rotate(${hRotation}deg)`;
-            min.style.transform = `rotate(${mRotation}deg)`;
-            sec.style.transform = `rotate(${sRotation}deg)`;
-        }
-
-        // Update time every second
-        setInterval(displayTime, 1000);
-        displayTime(); // Initial call to set the correct time immediately
-    </script>
+   <script src="javascript.js"></script>
 
 </body>
 </html>
